@@ -1,4 +1,4 @@
-name: Hello World
+name: Python Hello World
 
 on:
   push:
@@ -6,9 +6,20 @@ on:
       - main
 
 jobs:
-  hello:
+  hello-world:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print Hello World
-        run: echo "Hello World"
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Check Python Version
+        run: python --version
+
+      - name: Run Hello World Program
+        run: python app.py
